@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
@@ -21,7 +22,7 @@ export class ActivityViewComponent implements OnInit {
   activities: Observable<any[]>;
   activity: Observable<any>;
 
-  constructor(Http: Http, public route: ActivatedRoute) {
+  constructor(Http: Http, public route: ActivatedRoute, title: Title) {
     let activities = Http.get('https://melbourne-things-to-do.firebaseio.com/activities.json')
     .map(res => res.json());
 
@@ -33,6 +34,10 @@ export class ActivityViewComponent implements OnInit {
     this.activity = route.params.switchMap(params => 
       this.activities.map(list => list.find(item => item.title = params['title']))
     );
+
+    this.activity.subscribe(activity => {
+      title.setTitle(activity.title);
+    });
   }
 
   ngOnInit() {
