@@ -14,4 +14,3 @@ import { RouterModule } from '@angular/router'
   declarations: [AboutComponent]
 })
 export class AboutModule { }
-

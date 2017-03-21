@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router'
-
 import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list.component';
 import { ActivityViewComponent } from './activity-view.component';
@@ -20,6 +19,7 @@ import { ActivityViewComponent } from './activity-view.component';
     HttpModule,
     RouterModule.forRoot([
       {path: '', component: ActivityListComponent },
+      {path: 'activities/:title', component: ActivityViewComponent },
       {path: 'about', loadChildren: './about/about.module#AboutModule'},
       {path: 'submit', loadChildren: './submit/submit.module#SubmitModule'},
     ])
