@@ -1,4 +1,7 @@
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Component } from '@angular/core';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Something cool';
+
+
+  constructor(router: Router, activatedRoute: ActivatedRoute, title: Title) {
+    router.events.filter(e => e instanceof NavigationEnd).subscribe((n: NavigationEnd) => {
+      let pageTitle = router.routerState.snapshot.root.children[0].data['title'];
+      if (pageTitle) {
+        title.setTitle(pageTitle);
+      } else if (pageTitle !== false) {
+        title.setTitle("Site Default");
+      }
+      window.scrollTo(0, 0);
+    });
+  }
+
 }

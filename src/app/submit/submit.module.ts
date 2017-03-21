@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SubmitComponent } from './submit.component';
 import { RouterModule } from '@angular/router';
+import { SubmitComponent } from './submit.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [
